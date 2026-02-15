@@ -45,8 +45,8 @@ function GalleryItem({ image, index, showBadge, onClick }) {
     >
       <button
         onClick={onClick}
-        className="group relative w-full overflow-hidden rounded-lg cursor-pointer bg-warm-gray block"
-        aria-label={`View ${image.alt || 'artwork'}`}
+        className="gallery-card group"
+        aria-label={`View ${image.info || image.alt || 'artwork'}`}
       >
         <img
           src={image.src}
@@ -54,35 +54,46 @@ function GalleryItem({ image, index, showBadge, onClick }) {
           loading="lazy"
           className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
         />
+
         {/* Hover overlay */}
-        <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/20 transition-all duration-300 flex items-center justify-center">
-          <svg className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-          </svg>
+        <div className="gallery-card-overlay">
+          {/* Title & details at bottom */}
+          {image.info && (
+            <div className="gallery-card-info">
+              <p className="gallery-card-title">{image.info}</p>
+              {image.medium && (
+                <p className="gallery-card-medium">{image.medium}</p>
+              )}
+              {image.price && (
+                <p className="gallery-card-price">
+                  {image.sold ? `${image.price} \u2014 Sold` : image.price}
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Magnifier icon */}
+          <div className="gallery-card-zoom">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
+            </svg>
+          </div>
         </div>
 
-        {/* Prints badge */}
-        {showBadge && image.prints && (
-          <span className="absolute top-3 right-3 bg-sage text-white text-xs px-2 py-1 rounded-full font-sans tracking-wide">
-            Prints Available
-          </span>
-        )}
+        {/* Top badges */}
+        <div className="absolute top-3 left-3 right-3 flex justify-between items-start pointer-events-none">
+          {/* Sold badge */}
+          {image.sold ? (
+            <span className="gallery-badge gallery-badge-sold">Sold</span>
+          ) : (
+            <span></span>
+          )}
 
-        {/* Sold badge */}
-        {image.sold && (
-          <span className="absolute top-3 left-3 bg-brown text-white text-xs px-2 py-1 rounded-full font-sans tracking-wide">
-            SOLD
-          </span>
-        )}
-
-        {/* Info overlay */}
-        {image.info && (
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/60 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <p className="text-white text-sm font-medium">{image.info}</p>
-            {image.medium && <p className="text-white/80 text-xs mt-0.5">{image.medium}</p>}
-            {image.price && <p className="text-white/80 text-xs">{image.price}{image.sold ? ' — SOLD' : ''}</p>}
-          </div>
-        )}
+          {/* Prints badge */}
+          {showBadge && image.prints && (
+            <span className="gallery-badge gallery-badge-prints">Prints Available</span>
+          )}
+        </div>
       </button>
     </div>
   );
