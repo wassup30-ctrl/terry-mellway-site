@@ -1,6 +1,5 @@
 import './globals.css';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import LayoutShell from '@/components/LayoutShell';
 
 export const metadata = {
   metadataBase: new URL('https://www.terrymellway.com'),
@@ -34,11 +33,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="antialiased min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1 pt-20">
+        <LayoutShell>
           {children}
-        </main>
-        <Footer />
+        </LayoutShell>
       </body>
     </html>
   );

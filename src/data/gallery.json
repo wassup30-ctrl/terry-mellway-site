@@ -1,0 +1,376 @@
+{
+  "colouredPencil": [
+    {
+      "src": "/images/coloured-pencil/cp-01.jpg",
+      "alt": "Stargazing — Coloured Pencil on Paper",
+      "info": "Stargazing",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "11 x 14 in",
+      "prints": true,
+      "sold": true,
+      "price": "$750"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-02.jpg",
+      "alt": "Autumn Watch — Coloured Pencil on Paper",
+      "info": "Autumn Watch",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "9 x 12 in",
+      "prints": true,
+      "sold": true,
+      "price": "$650"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-03.jpg",
+      "alt": "Let There Be Lights — Coloured Pencil on Paper",
+      "info": "Let There Be Lights",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "9 x 14 in",
+      "prints": true,
+      "sold": false,
+      "price": "$850"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-04.jpg",
+      "alt": "Hawaiian — Coloured Pencil on Paper",
+      "info": "Hawaiian",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "11 x 14 in",
+      "prints": true,
+      "sold": true,
+      "price": "$700"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-05.jpg",
+      "alt": "Sheba — Coloured Pencil on Paper",
+      "info": "Sheba",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "9 x 12 in",
+      "prints": true,
+      "sold": true,
+      "price": "$800"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-06.jpg",
+      "alt": "Unlocked — Coloured Pencil on Paper",
+      "info": "Unlocked",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "11 x 14 in",
+      "prints": true,
+      "sold": false,
+      "price": "$650"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-07.jpg",
+      "alt": "Purple Iris — Coloured Pencil on Paper",
+      "info": "Purple Iris",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "9 x 12 in",
+      "prints": true,
+      "sold": true,
+      "price": "$550"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-08.jpg",
+      "alt": "Daisy — Coloured Pencil on Paper",
+      "info": "Daisy",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "5 x 7 in",
+      "prints": true,
+      "sold": false,
+      "price": "$250"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-09.jpg",
+      "alt": "Fire Lillies — Coloured Pencil on Paper",
+      "info": "Fire Lillies",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "11 x 14 in",
+      "prints": true,
+      "sold": true,
+      "price": "$700"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-10.jpg",
+      "alt": "The Three Musketeers — Coloured Pencil on Paper",
+      "info": "The Three Musketeers",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "12 x 16 in",
+      "prints": true,
+      "sold": true,
+      "price": "$950"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-11.jpg",
+      "alt": "The Local — Coloured Pencil on Paper",
+      "info": "The Local",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "11 x 14 in",
+      "prints": true,
+      "sold": true,
+      "price": "$800"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-12.jpg",
+      "alt": "Vacancy — Coloured Pencil on Paper",
+      "info": "Vacancy",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "9 x 12 in",
+      "prints": true,
+      "sold": false,
+      "price": "$550"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-13.jpg",
+      "alt": "Reflections — Coloured Pencil on Paper",
+      "info": "Reflections",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "9 x 14 in",
+      "prints": true,
+      "sold": true,
+      "price": "$750"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-14.jpg",
+      "alt": "Into the Light — Coloured Pencil on Black Paper",
+      "info": "Into the Light",
+      "medium": "Coloured Pencil on Black Paper",
+      "dimensions": "11 x 14 in",
+      "prints": true,
+      "sold": false,
+      "price": "$850"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-15.jpg",
+      "alt": "Gus — Coloured Pencil on Paper",
+      "info": "Gus",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "9 x 12 in",
+      "prints": true,
+      "sold": true,
+      "price": "$500"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-16.jpg",
+      "alt": "Burst of Color — Coloured Pencil on Paper",
+      "info": "Burst of Color",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "12 x 16 in",
+      "prints": true,
+      "sold": true,
+      "price": "$1,200"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-17.jpg",
+      "alt": "Great Blue Heron — Coloured Pencil on Paper",
+      "info": "Great Blue Heron",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "11 x 14 in",
+      "prints": true,
+      "sold": false,
+      "price": "$800"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-18.jpg",
+      "alt": "Blue Hydrangea — Coloured Pencil on Paper",
+      "info": "Blue Hydrangea",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "7 x 9 in",
+      "prints": true,
+      "sold": false,
+      "price": "$400"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-19.jpg",
+      "alt": "'55 Chevrolet — Coloured Pencil on Paper",
+      "info": "'55 Chevrolet",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "11 x 14 in",
+      "prints": true,
+      "sold": true,
+      "price": "$850"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-20.jpg",
+      "alt": "The Fiddler — Coloured Pencil on Paper",
+      "info": "The Fiddler",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "11 x 14 in",
+      "prints": true,
+      "sold": true,
+      "price": "$900"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-21.jpg",
+      "alt": "Wood Stork — Coloured Pencil on Black Paper",
+      "info": "Wood Stork",
+      "medium": "Coloured Pencil on Black Paper",
+      "dimensions": "9 x 14 in",
+      "prints": true,
+      "sold": false,
+      "price": "$700"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-22.jpg",
+      "alt": "Queen Midas — Coloured Pencil on Paper",
+      "info": "Queen Midas",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "11 x 14 in",
+      "prints": true,
+      "sold": true,
+      "price": "$750"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-23.jpg",
+      "alt": "White Peonies — Coloured Pencil on Paper",
+      "info": "White Peonies",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "11 x 14 in",
+      "prints": true,
+      "sold": true,
+      "price": "$900"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-24.jpg",
+      "alt": "Rooster — Coloured Pencil on Paper",
+      "info": "Rooster",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "12 x 16 in",
+      "prints": true,
+      "sold": false,
+      "price": "$850"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-25.jpg",
+      "alt": "Red Gladiolus — Coloured Pencil on Black Paper",
+      "info": "Red Gladiolus",
+      "medium": "Coloured Pencil on Black Paper",
+      "dimensions": "9 x 12 in",
+      "prints": true,
+      "sold": false,
+      "price": "$550"
+    },
+    {
+      "src": "/images/coloured-pencil/cp-26.jpg",
+      "alt": "Amur Leopard — Coloured Pencil on Paper",
+      "info": "Amur Leopard",
+      "medium": "Coloured Pencil on Paper",
+      "dimensions": "11 x 14 in",
+      "prints": true,
+      "sold": true,
+      "price": "$900"
+    }
+  ],
+  "watercolour": [
+    {
+      "src": "/images/watercolour/wc-01.jpg",
+      "alt": "Pastel Daylily — Watercolour on Paper",
+      "info": "Pastel Daylily",
+      "medium": "Watercolour on Paper",
+      "dimensions": "11 x 14 in",
+      "sold": false,
+      "price": "$500"
+    },
+    {
+      "src": "/images/watercolour/wc-02.jpg",
+      "alt": "Pink Poppies — Watercolour on Paper",
+      "info": "Pink Poppies",
+      "medium": "Watercolour on Paper",
+      "dimensions": "11 x 14 in",
+      "sold": false,
+      "price": "$550"
+    },
+    {
+      "src": "/images/watercolour/wc-03.jpg",
+      "alt": "Winter Light — Watercolour on Paper",
+      "info": "Winter Light",
+      "medium": "Watercolour on Paper",
+      "dimensions": "14 x 20 in",
+      "sold": true,
+      "price": "$750"
+    },
+    {
+      "src": "/images/watercolour/wc-04.jpg",
+      "alt": "On the Vine — Watercolour on Paper",
+      "info": "On the Vine",
+      "medium": "Watercolour on Paper",
+      "dimensions": "11 x 14 in",
+      "sold": false,
+      "price": "$500"
+    }
+  ],
+  "acrylicOil": [
+    {
+      "src": "/images/acrylic-oil/ao-01.jpg",
+      "alt": "Palmer Rapids — Oil on Canvas",
+      "info": "Palmer Rapids",
+      "medium": "Oil on Canvas",
+      "dimensions": "36 x 60 in",
+      "sold": true,
+      "price": "$950"
+    },
+    {
+      "src": "/images/acrylic-oil/ao-02.jpg",
+      "alt": "Prairie Homestead — Acrylic on Canvas",
+      "info": "Prairie Homestead",
+      "medium": "Acrylic on Canvas",
+      "dimensions": "24 x 30 in",
+      "sold": false,
+      "price": "$800"
+    },
+    {
+      "src": "/images/acrylic-oil/ao-03.jpg",
+      "alt": "After the Rains — Acrylic on Canvas",
+      "info": "After the Rains",
+      "medium": "Acrylic on Canvas",
+      "dimensions": "12 x 36 in",
+      "sold": false,
+      "price": "$650"
+    },
+    {
+      "src": "/images/acrylic-oil/ao-04.jpg",
+      "alt": "La Vie en Rose — Acrylic on Canvas",
+      "info": "La Vie en Rose",
+      "medium": "Acrylic on Canvas",
+      "dimensions": "30 x 30 in",
+      "sold": false,
+      "price": "$900"
+    },
+    {
+      "src": "/images/acrylic-oil/ao-05.jpg",
+      "alt": "Simply Pure — Acrylic on Canvas",
+      "info": "Simply Pure",
+      "medium": "Acrylic on Canvas",
+      "dimensions": "24 x 30 in",
+      "sold": true,
+      "price": "$750"
+    },
+    {
+      "src": "/images/acrylic-oil/ao-06.jpg",
+      "alt": "My Forest Home — Oil on Canvas",
+      "info": "My Forest Home",
+      "medium": "Oil on Canvas",
+      "dimensions": "36 x 60 in",
+      "sold": false,
+      "price": "$1,800"
+    },
+    {
+      "src": "/images/acrylic-oil/ao-07.jpg",
+      "alt": "Morning Mist — Oil on Canvas",
+      "info": "Morning Mist",
+      "medium": "Oil on Canvas",
+      "dimensions": "24 x 30 in",
+      "sold": false,
+      "price": "$950"
+    },
+    {
+      "src": "/images/acrylic-oil/ao-08.jpg",
+      "alt": "The Clearing — Acrylic on Canvas",
+      "info": "The Clearing",
+      "medium": "Acrylic on Canvas",
+      "dimensions": "30 x 40 in",
+      "sold": false,
+      "price": "$1,200"
+    }
+  ]
+}
