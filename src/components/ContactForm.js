@@ -3,31 +3,19 @@
 import { useState } from 'react';
 
 export default function ContactForm() {
-  const [status, setStatus] = useState('idle');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    setStatus('sending');
 
-    const form = e.target;
-    const data = new FormData(form);
+    const subject = encodeURIComponent(`Message from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\n${message}`
+    );
 
-    try {
-      const res = await fetch('https://formspree.io/f/xpwdjvkl', {
-        method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
-      });
-
-      if (res.ok) {
-        setStatus('sent');
-        form.reset();
-      } else {
-        setStatus('error');
-      }
-    } catch {
-      setStatus('error');
-    }
+    window.location.href = `mailto:6artist6@gmail.com?subject=${subject}&body=${body}`;
   }
 
   return (
@@ -41,6 +29,8 @@ export default function ContactForm() {
           id="name"
           name="name"
           required
+          value={name}
+          onChange={e => setName(e.target.value)}
           className="w-full px-4 py-2.5 bg-white border border-warm-gray rounded-md text-charcoal text-sm focus:outline-none focus:border-brown focus:ring-1 focus:ring-brown transition-colors"
           placeholder="Your name"
         />
@@ -55,6 +45,8 @@ export default function ContactForm() {
           id="email"
           name="email"
           required
+          value={email}
+          onChange={e => setEmail(e.target.value)}
           className="w-full px-4 py-2.5 bg-white border border-warm-gray rounded-md text-charcoal text-sm focus:outline-none focus:border-brown focus:ring-1 focus:ring-brown transition-colors"
           placeholder="your@email.com"
         />
@@ -69,6 +61,8 @@ export default function ContactForm() {
           name="message"
           required
           rows={5}
+          value={message}
+          onChange={e => setMessage(e.target.value)}
           className="w-full px-4 py-2.5 bg-white border border-warm-gray rounded-md text-charcoal text-sm focus:outline-none focus:border-brown focus:ring-1 focus:ring-brown transition-colors resize-vertical"
           placeholder="Your message..."
         />
@@ -76,18 +70,10 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        disabled={status === 'sending'}
-        className="px-8 py-2.5 bg-brown text-white text-sm tracking-wide uppercase rounded-md hover:bg-brown-light transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+        className="px-8 py-2.5 bg-brown text-white text-sm tracking-wide uppercase rounded-md hover:bg-brown-light transition-colors"
       >
-        {status === 'sending' ? 'Sending...' : 'Send Message'}
+        Send Message
       </button>
-
-      {status === 'sent' && (
-        <p className="text-sage text-sm">Thank you! Your message has been sent.</p>
-      )}
-      {status === 'error' && (
-        <p className="text-red-600 text-sm">Something went wrong. Please try emailing directly at 6artist6@gmail.com</p>
-      )}
     </form>
   );
 }
