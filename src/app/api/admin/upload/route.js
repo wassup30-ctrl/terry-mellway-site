@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import { verifyAuth, unauthorized } from '@/lib/auth';
 
 const CATEGORY_DIRS = {
   'coloured-pencil': 'coloured-pencil',
@@ -17,6 +16,21 @@ const PREFIXES = {
 };
 
 export async function POST(request) {
+  if (!(await verifyAuth(request))) return unauthorized();
+  // Check if we have filesystem access (local dev)
+  let fs, path;
+  try {
+    fs = require('fs');
+    path = require('path');
+    // Verify we can actually write
+    path.join(process.cwd(), 'public');
+  } catch {
+    return NextResponse.json(
+      { error: 'Image uploads are only available in local development. Use an image URL instead.' },
+      { status: 501 }
+    );
+  }
+
   const formData = await request.formData();
   const file = formData.get('file');
   const category = formData.get('category');

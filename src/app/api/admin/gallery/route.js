@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
-
-const DATA_PATH = path.join(process.cwd(), 'src/data/gallery.json');
+import { getGalleryData, setGalleryData } from '@/lib/data';
+import { verifyAuth, unauthorized } from '@/lib/auth';
 
 const CATEGORY_MAP = {
   'coloured-pencil': 'colouredPencil',
@@ -10,20 +8,14 @@ const CATEGORY_MAP = {
   'acrylic-oil': 'acrylicOil',
 };
 
-function readData() {
-  return JSON.parse(fs.readFileSync(DATA_PATH, 'utf-8'));
-}
-
-function writeData(data) {
-  fs.writeFileSync(DATA_PATH, JSON.stringify(data, null, 2) + '\n');
-}
-
-export async function GET() {
-  const data = readData();
+export async function GET(request) {
+  if (!(await verifyAuth(request))) return unauthorized();
+  const data = await getGalleryData();
   return NextResponse.json(data);
 }
 
 export async function POST(request) {
+  if (!(await verifyAuth(request))) return unauthorized();
   const body = await request.json();
   const { category, ...artwork } = body;
 
@@ -32,9 +24,9 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Invalid category' }, { status: 400 });
   }
 
-  const data = readData();
+  const data = await getGalleryData();
   data[key].push(artwork);
-  writeData(data);
+  await setGalleryData(data);
 
   const index = data[key].length - 1;
   return NextResponse.json({ id: `${category}-${index}`, ...artwork }, { status: 201 });

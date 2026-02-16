@@ -1,0 +1,16 @@
+{
+  "name": "terry-mellway-art",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2024-12-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "DATA",
+      "id": "79e46690f7db4e8789c27f32a80148d5"
+    }
+  ]
+}

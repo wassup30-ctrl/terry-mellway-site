@@ -14,7 +14,6 @@ const tmpDir = path.join(root, '.admin-backup');
 const items = [
   { src: path.join(appDir, 'admin'), bak: path.join(tmpDir, 'admin') },
   { src: path.join(appDir, 'api', 'admin'), bak: path.join(tmpDir, 'api-admin') },
-  { src: path.join(root, 'src', 'proxy.js'), bak: path.join(tmpDir, 'proxy.js') },
 ];
 
 function moveAside() {
