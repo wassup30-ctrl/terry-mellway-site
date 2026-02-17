@@ -1,14 +1,28 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 export default function ImageUploader({ category, value, onChange, name }) {
   const [dragging, setDragging] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [localPreview, setLocalPreview] = useState(null);
   const inputRef = useRef(null);
+
+  // Clean up blob URL when it changes or on unmount
+  useEffect(() => {
+    return () => { if (localPreview) URL.revokeObjectURL(localPreview); };
+  }, [localPreview]);
+
+  // Clear local preview if value is removed externally (e.g. form reset)
+  useEffect(() => {
+    if (!value) setLocalPreview(null);
+  }, [value]);
 
   async function upload(file) {
     setUploading(true);
+    // Show immediate local preview via blob URL
+    if (localPreview) URL.revokeObjectURL(localPreview);
+    setLocalPreview(URL.createObjectURL(file));
     try {
       const form = new FormData();
       form.append('file', file);
@@ -22,6 +36,8 @@ export default function ImageUploader({ category, value, onChange, name }) {
       }
     } finally {
       setUploading(false);
+      // Reset input so the same file can be re-selected
+      if (inputRef.current) inputRef.current.value = '';
     }
   }
 
@@ -37,6 +53,8 @@ export default function ImageUploader({ category, value, onChange, name }) {
     if (file) upload(file);
   }
 
+  const displaySrc = localPreview || value;
+
   return (
     <div
       onDragOver={e => { e.preventDefault(); setDragging(true); }}
@@ -45,7 +63,7 @@ export default function ImageUploader({ category, value, onChange, name }) {
       onClick={() => inputRef.current?.click()}
       className={`relative cursor-pointer rounded-xl border-2 border-dashed transition-colors overflow-hidden ${
         dragging ? 'border-brown bg-brown/5' : 'border-warm-gray hover:border-brown-light'
-      } ${value ? 'aspect-auto' : 'aspect-[4/3]'} flex items-center justify-center`}
+      } ${displaySrc ? 'aspect-auto' : 'aspect-[4/3]'} flex items-center justify-center`}
     >
       <input
         ref={inputRef}
@@ -59,8 +77,8 @@ export default function ImageUploader({ category, value, onChange, name }) {
           <div className="w-6 h-6 border-2 border-brown border-t-transparent rounded-full animate-spin" />
         </div>
       )}
-      {value ? (
-        <img src={value} alt="Preview" className="w-full h-auto max-h-80 object-contain" />
+      {displaySrc ? (
+        <img src={displaySrc} alt="Preview" className="w-full h-auto max-h-80 object-contain" />
       ) : (
         <div className="text-center p-6">
           <svg className="mx-auto mb-2 text-charcoal-light/40" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
