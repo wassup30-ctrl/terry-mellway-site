@@ -1,30 +1,40 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { categories } from '@/data/gallery';
 import { blogPosts } from '@/data/blog';
 import ContactForm from '@/components/ContactForm';
 import useReveal from '@/hooks/useReveal';
+import landingDefaults from '@/data/landing.json';
 
 export default function HomePage() {
+  const [landing, setLanding] = useState(landingDefaults);
+
+  useEffect(() => {
+    fetch('/api/landing')
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (data) setLanding(data); });
+  }, []);
+
   return (
     <>
-      <HeroSection />
-      <GalleryPreview />
-      <AboutSection />
+      <HeroSection hero={landing.hero} />
+      <GalleryPreview preview={landing.galleryPreview} />
+      <AboutSection about={landing.about} />
       <BlogPreview />
       <ContactSection />
     </>
   );
 }
 
-function HeroSection() {
+function HeroSection({ hero }) {
   return (
     <section className="relative h-[85vh] min-h-[500px] flex items-center justify-center overflow-hidden -mt-20">
       {/* Background image */}
       <div className="absolute inset-0">
         <img
-          src="/images/coloured-pencil/cp-01.jpg"
+          src={hero.image}
           alt="Featured artwork by Terry Mellway"
           className="w-full h-full object-cover"
         />
@@ -34,10 +44,12 @@ function HeroSection() {
       {/* Content */}
       <div className="relative text-center px-6 animate-fade-in-up">
         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-4 leading-tight">
-          Seeing the World<br />Through My Eyes
+          {hero.heading.split('\n').map((line, i, arr) => (
+            <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+          ))}
         </h1>
         <p className="text-white/80 text-lg sm:text-xl font-light max-w-xl mx-auto mb-8">
-          Fine art by Terry Mellway — coloured pencil, watercolour, acrylic &amp; oil
+          {hero.tagline}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
@@ -65,21 +77,27 @@ function HeroSection() {
   );
 }
 
-function GalleryPreview() {
+function GalleryPreview({ preview }) {
   const ref = useReveal();
+
+  // Merge dynamic landing data with static artwork counts
+  const displayCategories = preview.categories.map(pc => {
+    const staticCat = categories.find(c => c.slug === pc.slug);
+    return { ...pc, count: staticCat?.count ?? 0 };
+  });
 
   return (
     <section className="py-20 px-6">
       <div ref={ref} className="max-w-7xl mx-auto reveal">
         <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl sm:text-4xl text-charcoal mb-3">Gallery</h2>
+          <h2 className="font-serif text-3xl sm:text-4xl text-charcoal mb-3">{preview.heading}</h2>
           <p className="text-charcoal-light max-w-lg mx-auto">
-            Explore original works across three mediums, each reflecting my deep connection to the beauty around us.
+            {preview.description}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {categories.map((cat) => (
+          {displayCategories.map((cat) => (
             <Link
               key={cat.slug}
               href={`/gallery/${cat.slug}`}
@@ -118,7 +136,7 @@ function GalleryPreview() {
   );
 }
 
-function AboutSection() {
+function AboutSection({ about }) {
   const ref = useReveal();
 
   return (
@@ -128,7 +146,7 @@ function AboutSection() {
           {/* Artist photo */}
           <div className="relative">
             <img
-              src="/images/misc/artist-photo.jpg"
+              src={about.image}
               alt="Terry Mellway in her studio"
               loading="lazy"
               className="w-full max-w-md mx-auto rounded-lg shadow-lg"
@@ -137,24 +155,18 @@ function AboutSection() {
 
           {/* Bio */}
           <div>
-            <h2 className="font-serif text-3xl sm:text-4xl text-charcoal mb-2">About the Artist</h2>
-            <p className="text-brown text-sm tracking-wide uppercase mb-6">Pencil &amp; Brush Studio — Sandy Hook, Manitoba</p>
+            <h2 className="font-serif text-3xl sm:text-4xl text-charcoal mb-2">{about.heading}</h2>
+            <p className="text-brown text-sm tracking-wide uppercase mb-6">{about.subheading}</p>
 
             <div className="space-y-4 text-charcoal-light leading-relaxed">
-              <p>
-                My name is Terry Mellway and I am an artist. Art has always been a part of my life. The connection I feel to everything around me, in the shapes, the colors and the details comes from deep within and my aim is to enable my viewers to see that connection through my artwork and hopefully allow them to appreciate the beauty all around us.
-              </p>
-              <p>
-                My love for colored pencils goes back to junior high and every year getting a new set for school and the excitement I felt of sharpening all the bright new colors and using them for the first time. Today colored pencils are an extension of my passion for art.
-              </p>
-              <p>
-                When a piece turns out well for me I feel it, so each painting is part of my joy. I have added watercolour, acrylic and oils to my portfolio. I hope you enjoy them all as much as I enjoy creating them.
-              </p>
+              {about.paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
             </div>
 
             <div className="mt-8 flex gap-4">
               <a
-                href="https://www.instagram.com/terrymellway/"
+                href={about.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-charcoal-light hover:text-brown transition-colors text-sm"
@@ -165,7 +177,7 @@ function AboutSection() {
                 @terrymellway
               </a>
               <a
-                href="http://www.facebook.com/terrymellway"
+                href={about.facebookUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-charcoal-light hover:text-brown transition-colors text-sm"

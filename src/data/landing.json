@@ -1,0 +1,28 @@
+{
+  "hero": {
+    "image": "/images/coloured-pencil/cp-01.jpg",
+    "heading": "Seeing the World\nThrough My Eyes",
+    "tagline": "Fine art by Terry Mellway — coloured pencil, watercolour, acrylic & oil"
+  },
+  "galleryPreview": {
+    "heading": "Gallery",
+    "description": "Explore original works across three mediums, each reflecting my deep connection to the beauty around us.",
+    "categories": [
+      { "slug": "coloured-pencil", "name": "Coloured Pencil", "featured": "/images/coloured-pencil/cp-01.jpg" },
+      { "slug": "watercolour", "name": "Watercolour", "featured": "/images/watercolour/wc-01.jpg" },
+      { "slug": "acrylic-oil", "name": "Acrylic & Oil", "featured": "/images/acrylic-oil/ao-01.jpg" }
+    ]
+  },
+  "about": {
+    "image": "/images/misc/artist-photo.jpg",
+    "heading": "About the Artist",
+    "subheading": "Pencil & Brush Studio — Sandy Hook, Manitoba",
+    "paragraphs": [
+      "My name is Terry Mellway and I am an artist. Art has always been a part of my life. The connection I feel to everything around me, in the shapes, the colors and the details comes from deep within and my aim is to enable my viewers to see that connection through my artwork and hopefully allow them to appreciate the beauty all around us.",
+      "My love for colored pencils goes back to junior high and every year getting a new set for school and the excitement I felt of sharpening all the bright new colors and using them for the first time. Today colored pencils are an extension of my passion for art.",
+      "When a piece turns out well for me I feel it, so each painting is part of my joy. I have added watercolour, acrylic and oils to my portfolio. I hope you enjoy them all as much as I enjoy creating them."
+    ],
+    "instagramUrl": "https://www.instagram.com/terrymellway/",
+    "facebookUrl": "http://www.facebook.com/terrymellway"
+  }
+}

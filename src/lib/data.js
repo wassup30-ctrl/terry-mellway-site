@@ -1,5 +1,6 @@
 import galleryJson from '@/data/gallery.json';
 import blogJson from '@/data/blog.json';
+import landingJson from '@/data/landing.json';
 
 async function getKV() {
   try {
@@ -57,6 +58,31 @@ export async function setBlogData(data) {
   const path = require('path');
   fs.writeFileSync(
     path.join(process.cwd(), 'src/data/blog.json'),
+    JSON.stringify(data, null, 2) + '\n'
+  );
+}
+
+// ── Landing ───────────────────────────────────────────────────────────
+
+export async function getLandingData() {
+  const kv = await getKV();
+  if (kv) {
+    const data = await kv.get('landing', 'json');
+    if (data) return data;
+  }
+  return landingJson;
+}
+
+export async function setLandingData(data) {
+  const kv = await getKV();
+  if (kv) {
+    await kv.put('landing', JSON.stringify(data));
+    return;
+  }
+  const fs = require('fs');
+  const path = require('path');
+  fs.writeFileSync(
+    path.join(process.cwd(), 'src/data/landing.json'),
     JSON.stringify(data, null, 2) + '\n'
   );
 }

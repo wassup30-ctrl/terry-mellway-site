@@ -6,6 +6,7 @@ const CATEGORY_DIRS = {
   'watercolour': 'watercolour',
   'acrylic-oil': 'acrylic-oil',
   'blog': 'blog',
+  'landing': 'misc',
 };
 
 const PREFIXES = {
@@ -13,6 +14,7 @@ const PREFIXES = {
   'watercolour': 'wc',
   'acrylic-oil': 'ao',
   'blog': 'blog',
+  'landing': 'landing',
 };
 
 export async function POST(request) {
