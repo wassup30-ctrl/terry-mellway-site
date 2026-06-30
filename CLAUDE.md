@@ -53,8 +53,9 @@ Includes a local admin panel for managing gallery artworks and blog posts.
 ## Data Architecture
 - `src/data/gallery.json` — Source of truth for all artwork data
 - `src/data/blog.json` — Source of truth for all blog posts
-- `src/data/gallery.js` — Thin wrapper that imports JSON and re-exports named arrays
+- `src/data/gallery.js` — Category metadata + pure helpers (`categoryMeta`, `buildCategories`, `buildAllWorks`, `buildImagesByCategory`) that derive views from live data; does NOT import the JSON for display
 - `src/data/blog.js` — Thin wrapper that imports JSON and re-exports blogPosts
 - `src/lib/data.js` — Unified data layer (Cloudflare KV on Workers, fs on local dev)
 - API routes use `getGalleryData`/`setGalleryData`/`getBlogData`/`setBlogData` from `@/lib/data`
+- Public gallery pages read live data via `getGalleryData()` and render dynamically (`force-dynamic`), so admin edits appear immediately without a redeploy
 - Auth verification via `verifyAuth()` from `@/lib/auth` in each API route handler

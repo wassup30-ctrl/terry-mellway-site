@@ -15,7 +15,7 @@ export default function GalleryHeader({ title, subtitle, description, count }) {
       {description && (
         <p className="text-charcoal-light max-w-xl mx-auto mb-2">{description}</p>
       )}
-      {count && (
+      {count > 0 && (
         <p className="text-charcoal-light/60 text-sm">{count} works</p>
       )}
     </div>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { categories } from '@/data/gallery';
+import { buildCategories } from '@/data/gallery';
 import { blogPosts } from '@/data/blog';
 import ContactForm from '@/components/ContactForm';
 import useReveal from '@/hooks/useReveal';
@@ -79,12 +79,25 @@ function HeroSection({ hero }) {
 
 function GalleryPreview({ preview }) {
   const ref = useReveal();
+  const [counts, setCounts] = useState({});
 
-  // Merge dynamic landing data with static artwork counts
-  const displayCategories = preview.categories.map(pc => {
-    const staticCat = categories.find(c => c.slug === pc.slug);
-    return { ...pc, count: staticCat?.count ?? 0 };
-  });
+  // Fetch live artwork counts so the homepage reflects admin add/delete edits.
+  useEffect(() => {
+    fetch('/api/gallery')
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (!data) return;
+        const map = {};
+        buildCategories(data).forEach(c => { map[c.slug] = c.count; });
+        setCounts(map);
+      });
+  }, []);
+
+  // Merge dynamic landing data with live artwork counts
+  const displayCategories = preview.categories.map(pc => ({
+    ...pc,
+    count: counts[pc.slug] ?? 0,
+  }));
 
   return (
     <section className="py-20 px-6">
@@ -112,7 +125,7 @@ function GalleryPreview({ preview }) {
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <h3 className="font-serif text-2xl text-white mb-1">{cat.name}</h3>
-                <p className="text-white/70 text-sm">{cat.count} works</p>
+                {cat.count > 0 && <p className="text-white/70 text-sm">{cat.count} works</p>}
               </div>
               <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
