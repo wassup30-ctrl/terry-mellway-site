@@ -39,9 +39,10 @@ Includes a local admin panel for managing gallery artworks and blog posts.
 - `node scripts/build-static.js` — Build static export (admin excluded)
 
 ## Deployment
-- **URL**: https://terry-mellway-art.terry-mellway.workers.dev
+- **URL**: https://www.terrymellway.com
+- **Custom domain**: `terrymellway.com` is bound to the `terry-mellway-art` Worker via the Cloudflare dashboard (not in `wrangler.jsonc`)
 - **CI/CD**: `.github/workflows/deploy.yml` auto-deploys on push to master
-- **KV Namespace**: `DATA` (ID: 79e46690f7db4e8789c27f32a80148d5)
+- **KV Namespace**: `DATA` (ID: caf5ce3b1d2a45b3a6e4799c95155849)
 - **Config**: `wrangler.jsonc` (Workers mode with `main` + `assets`)
 - **Note**: `wrangler deploy` fails on Windows (WASM path bug); use GitHub Actions
 

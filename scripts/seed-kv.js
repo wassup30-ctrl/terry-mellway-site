@@ -6,7 +6,7 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-const KV_ID = '79e46690f7db4e8789c27f32a80148d5';
+const KV_ID = 'caf5ce3b1d2a45b3a6e4799c95155849';
 
 const gallery = fs.readFileSync(path.join(__dirname, '..', 'src/data/gallery.json'), 'utf-8');
 const blog = fs.readFileSync(path.join(__dirname, '..', 'src/data/blog.json'), 'utf-8');
