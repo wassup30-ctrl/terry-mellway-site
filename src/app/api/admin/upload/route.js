@@ -57,7 +57,14 @@ export async function POST(request) {
 
   if (category === 'blog' && name) {
     const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    filename = `blog-${slug}${ext}`;
+    const base = `blog-${slug}`;
+    // Ensure a unique filename so multiple images on one post don't overwrite each other
+    filename = `${base}${ext}`;
+    let n = 2;
+    while (fs.existsSync(path.join(targetDir, filename))) {
+      filename = `${base}-${n}${ext}`;
+      n++;
+    }
   } else {
     const prefix = PREFIXES[category];
     const existing = fs.readdirSync(targetDir)

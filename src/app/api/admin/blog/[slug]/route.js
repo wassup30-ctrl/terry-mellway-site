@@ -26,6 +26,12 @@ export async function PUT(request, { params }) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
 
+  // Keep `image` (thumbnail / OpenGraph) in sync with the first entry of `images`.
+  if (Array.isArray(body.images)) {
+    body.images = body.images.filter(Boolean);
+    body.image = body.images[0] || '';
+  }
+
   data.posts[index] = { ...data.posts[index], ...body };
   await setBlogData(data);
 

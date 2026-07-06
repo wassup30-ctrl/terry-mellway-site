@@ -1,12 +1,17 @@
 import Link from 'next/link';
-import { blogPosts } from '@/data/blog';
+import { getBlogData } from '@/lib/data';
+
+// Render per-request so admin edits in KV show up immediately.
+export const dynamic = 'force-dynamic';
 
 export const metadata = {
   title: 'Blog',
   description: 'Studio updates, works in progress, and thoughts from Terry Mellway — coloured pencil, watercolour, and oil artist.',
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const { posts: blogPosts } = await getBlogData();
+
   return (
     <div className="py-12 px-6">
       <div className="max-w-5xl mx-auto">

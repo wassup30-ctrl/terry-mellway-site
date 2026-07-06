@@ -22,6 +22,14 @@ export async function POST(request) {
     return NextResponse.json({ error: 'A post with this slug already exists' }, { status: 409 });
   }
 
+  // Normalize images: `images` is the source of truth, `image` mirrors the first for
+  // the blog card thumbnail and OpenGraph preview.
+  const images = Array.isArray(post.images)
+    ? post.images.filter(Boolean)
+    : (post.image ? [post.image] : []);
+  post.images = images;
+  post.image = images[0] || '';
+
   data.posts.unshift(post);
   await setBlogData(data);
 

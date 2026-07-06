@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import ImageUploader from './ImageUploader';
+import MultiImageUploader from './MultiImageUploader';
 import { useToast } from './Toast';
 
 function slugify(text) {
@@ -17,7 +17,7 @@ export default function BlogPostForm({ post, isEdit }) {
     slug: post?.slug || '',
     title: post?.title || '',
     date: post?.date || new Date().toISOString().slice(0, 10),
-    image: post?.image || '',
+    images: post?.images || (post?.image ? [post.image] : []),
     excerpt: post?.excerpt || '',
     content: post?.content || '',
   });
@@ -66,12 +66,12 @@ export default function BlogPostForm({ post, isEdit }) {
         {/* Left: Image */}
         <div>
           <label className="block text-xs font-medium text-charcoal-light uppercase tracking-wider mb-2">
-            Featured Image
+            Images
           </label>
-          <ImageUploader
+          <MultiImageUploader
             category="blog"
-            value={form.image}
-            onChange={val => set('image', val)}
+            value={form.images}
+            onChange={val => set('images', val)}
             name={form.title}
           />
         </div>

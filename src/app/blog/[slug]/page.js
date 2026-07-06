@@ -1,14 +1,14 @@
 import Link from 'next/link';
-import { blogPosts } from '@/data/blog';
+import { getBlogData } from '@/lib/data';
 import { notFound } from 'next/navigation';
 
-export function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
-}
+// Render per-request so admin edits in KV show up immediately.
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata(props) {
   const { slug } = await props.params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const { posts } = await getBlogData();
+  const post = posts.find((p) => p.slug === slug);
   if (!post) return { title: 'Post Not Found' };
   return {
     title: post.title,
@@ -16,19 +16,24 @@ export async function generateMetadata(props) {
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      images: [{ url: post.image }],
+      images: post.image ? [{ url: post.image }] : [],
     },
   };
 }
 
 export default async function BlogPostPage(props) {
   const { slug } = await props.params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const { posts } = await getBlogData();
+  const post = posts.find((p) => p.slug === slug);
   if (!post) notFound();
 
-  const postIndex = blogPosts.indexOf(post);
-  const prevPost = postIndex < blogPosts.length - 1 ? blogPosts[postIndex + 1] : null;
-  const nextPost = postIndex > 0 ? blogPosts[postIndex - 1] : null;
+  const images = post.images || (post.image ? [post.image] : []);
+  const featured = images[0] || post.image;
+  const gallery = images.slice(1);
+
+  const postIndex = posts.indexOf(post);
+  const prevPost = postIndex < posts.length - 1 ? posts[postIndex + 1] : null;
+  const nextPost = postIndex > 0 ? posts[postIndex - 1] : null;
 
   return (
     <article className="py-12 px-6">
@@ -51,13 +56,15 @@ export default async function BlogPostPage(props) {
         </header>
 
         {/* Featured image */}
-        <div className="mb-8 rounded-lg overflow-hidden">
-          <img
-            src={post.image}
-            alt={post.title}
-            className="w-full h-auto"
-          />
-        </div>
+        {featured && (
+          <div className="mb-8 rounded-lg overflow-hidden">
+            <img
+              src={featured}
+              alt={post.title}
+              className="w-full h-auto"
+            />
+          </div>
+        )}
 
         {/* Content */}
         <div className="max-w-none">
@@ -67,6 +74,22 @@ export default async function BlogPostPage(props) {
             </p>
           ))}
         </div>
+
+        {/* Additional images */}
+        {gallery.length > 0 && (
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {gallery.map((src, i) => (
+              <div key={`${src}-${i}`} className="rounded-lg overflow-hidden">
+                <img
+                  src={src}
+                  alt={`${post.title} — image ${i + 2}`}
+                  loading="lazy"
+                  className="w-full h-auto"
+                />
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* Navigation */}
         <div className="mt-12 pt-8 border-t border-warm-gray flex justify-between">
