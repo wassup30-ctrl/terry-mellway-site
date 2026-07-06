@@ -1,12 +1,21 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 export default function MultiImageUploader({ category, value, onChange, name }) {
   const images = value || [];
   const [dragging, setDragging] = useState(false);
   const [uploadingCount, setUploadingCount] = useState(0);
+  // Local blob previews keyed by stored path, so a freshly uploaded image shows
+  // instantly even before the CDN/KV read is consistent.
+  const [previews, setPreviews] = useState({});
+  const previewsRef = useRef(previews);
+  previewsRef.current = previews;
   const inputRef = useRef(null);
+
+  useEffect(() => () => {
+    Object.values(previewsRef.current).forEach(url => URL.revokeObjectURL(url));
+  }, []);
 
   async function uploadFiles(fileList) {
     const files = Array.from(fileList).filter(f => f.type?.startsWith('image/'));
@@ -27,6 +36,8 @@ export default function MultiImageUploader({ category, value, onChange, name }) 
           const data = await res.json();
           if (res.ok && data.path) {
             added.push(data.path);
+            const url = URL.createObjectURL(file);
+            setPreviews(p => ({ ...p, [data.path]: url }));
             onChange([...images, ...added]);
           }
         } finally {
@@ -68,7 +79,7 @@ export default function MultiImageUploader({ category, value, onChange, name }) 
               key={`${src}-${i}`}
               className="group relative rounded-lg overflow-hidden border border-warm-gray bg-white aspect-square"
             >
-              <img src={src} alt={`Image ${i + 1}`} className="w-full h-full object-cover" />
+              <img src={previews[src] || src} alt={`Image ${i + 1}`} className="w-full h-full object-cover" />
 
               {i === 0 && (
                 <span className="absolute top-1.5 left-1.5 px-2 py-0.5 rounded-full bg-brown text-white text-[10px] font-medium uppercase tracking-wider">
