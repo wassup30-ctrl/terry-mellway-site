@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import MultiImageUploader from './MultiImageUploader';
+import FormattingTextarea from './FormattingTextarea';
 import { useToast } from './Toast';
 
 function slugify(text) {
@@ -138,9 +139,9 @@ export default function BlogPostForm({ post, isEdit }) {
             <label className="block text-xs font-medium text-charcoal-light uppercase tracking-wider mb-1.5">
               Content
             </label>
-            <textarea
+            <FormattingTextarea
               value={form.content}
-              onChange={e => set('content', e.target.value)}
+              onChange={val => set('content', val)}
               rows={8}
               required
               className="w-full px-3 py-2 rounded-lg border border-warm-gray bg-white text-charcoal text-sm focus:outline-none focus:border-brown resize-y"

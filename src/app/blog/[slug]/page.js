@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { getBlogData } from '@/lib/data';
 import { notFound } from 'next/navigation';
+import RichText from '@/components/RichText';
 
 // Render per-request so admin edits in KV show up immediately.
 export const dynamic = 'force-dynamic';
@@ -68,11 +69,7 @@ export default async function BlogPostPage(props) {
 
         {/* Content */}
         <div className="max-w-none">
-          {post.content.split('\n\n').map((paragraph, i) => (
-            <p key={i} className="text-charcoal-light leading-relaxed mb-4">
-              {paragraph}
-            </p>
-          ))}
+          <RichText text={post.content} paragraphClassName="text-charcoal-light leading-relaxed mb-4" />
         </div>
 
         {/* Additional images */}

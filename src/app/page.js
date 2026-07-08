@@ -7,6 +7,8 @@ import { blogPosts } from '@/data/blog';
 import ContactForm from '@/components/ContactForm';
 import useReveal from '@/hooks/useReveal';
 import landingDefaults from '@/data/landing.json';
+import RichText from '@/components/RichText';
+import { fontStyle } from '@/lib/fonts';
 
 export default function HomePage() {
   const [landing, setLanding] = useState(landingDefaults);
@@ -43,7 +45,7 @@ function HeroSection({ hero }) {
 
       {/* Content */}
       <div className="relative text-center px-6 animate-fade-in-up">
-        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-4 leading-tight">
+        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-4 leading-tight" style={fontStyle(hero.font)}>
           {hero.heading.split('\n').map((line, i, arr) => (
             <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
           ))}
@@ -103,7 +105,7 @@ function GalleryPreview({ preview }) {
     <section className="py-20 px-6">
       <div ref={ref} className="max-w-7xl mx-auto reveal">
         <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl sm:text-4xl text-charcoal mb-3">{preview.heading}</h2>
+          <h2 className="font-serif text-3xl sm:text-4xl text-charcoal mb-3" style={fontStyle(preview.font)}>{preview.heading}</h2>
           <p className="text-charcoal-light max-w-lg mx-auto">
             {preview.description}
           </p>
@@ -168,13 +170,11 @@ function AboutSection({ about }) {
 
           {/* Bio */}
           <div>
-            <h2 className="font-serif text-3xl sm:text-4xl text-charcoal mb-2">{about.heading}</h2>
+            <h2 className="font-serif text-3xl sm:text-4xl text-charcoal mb-2" style={fontStyle(about.font)}>{about.heading}</h2>
             <p className="text-brown text-sm tracking-wide uppercase mb-6">{about.subheading}</p>
 
-            <div className="space-y-4 text-charcoal-light leading-relaxed">
-              {about.paragraphs.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
+            <div className="space-y-4 text-charcoal-light leading-relaxed" style={fontStyle(about.bioFont)}>
+              <RichText text={about.paragraphs.join('\n\n')} />
             </div>
 
             <div className="mt-8 flex gap-4">

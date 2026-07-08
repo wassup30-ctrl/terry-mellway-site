@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import ImageUploader from './ImageUploader';
+import FormattingTextarea from './FormattingTextarea';
+import FontSelect from './FontSelect';
 import { useToast } from './Toast';
 
 function Section({ title, defaultOpen, children }) {
@@ -130,6 +132,7 @@ export default function LandingForm({ initialData }) {
                 className={textareaClass}
               />
             </Field>
+            <FontSelect label="Heading Font" value={form.hero.font} onChange={val => setHero('font', val)} />
             <Field label="Tagline">
               <input
                 type="text"
@@ -153,6 +156,7 @@ export default function LandingForm({ initialData }) {
               className={inputClass}
             />
           </Field>
+          <FontSelect label="Heading Font" value={form.galleryPreview.font} onChange={val => setGalleryPreview('font', val)} />
           <Field label="Description">
             <textarea
               value={form.galleryPreview.description}
@@ -222,6 +226,7 @@ export default function LandingForm({ initialData }) {
                 className={inputClass}
               />
             </Field>
+            <FontSelect label="Heading Font" value={form.about.font} onChange={val => setAbout('font', val)} />
             <Field label="Subheading">
               <input
                 type="text"
@@ -250,6 +255,9 @@ export default function LandingForm({ initialData }) {
         </div>
 
         <div className="pt-2">
+          <div className="mb-3 max-w-xs">
+            <FontSelect label="Bio / Quote Font" value={form.about.bioFont} onChange={val => setAbout('bioFont', val)} />
+          </div>
           <div className="flex items-center justify-between mb-2">
             <p className="text-xs font-medium text-charcoal-light uppercase tracking-wider">Bio Paragraphs</p>
             <button
@@ -263,12 +271,14 @@ export default function LandingForm({ initialData }) {
           <div className="space-y-3">
             {form.about.paragraphs.map((p, i) => (
               <div key={i} className="flex gap-2">
-                <textarea
-                  value={p}
-                  onChange={e => setParagraph(i, e.target.value)}
-                  rows={3}
-                  className={textareaClass + ' flex-1'}
-                />
+                <div className="flex-1">
+                  <FormattingTextarea
+                    value={p}
+                    onChange={val => setParagraph(i, val)}
+                    rows={3}
+                    className={textareaClass + ' w-full'}
+                  />
+                </div>
                 {form.about.paragraphs.length > 1 && (
                   <button
                     type="button"
